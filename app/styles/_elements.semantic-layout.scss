@@ -1,0 +1,25 @@
+header {
+  @include flex-container($spacing: center);
+  background-color: $color-blue;
+  box-shadow: 0 2px 2px $color-blue-dark;
+  color: $color-white;
+  height: 4rem;
+  width: 100%;
+  z-index: 10;
+}
+
+main {
+  padding: $base-spacing-unit-large;
+  flex-grow: 1;
+  width: 100%;
+}
+
+footer {
+  @include flex-container($spacing: center);
+  background-color: $color-grey-dark;
+  color: $color-grey-light;
+  height: 4rem;
+  line-height: 2rem;
+  text-align: center;
+  width: 100%;
+}
