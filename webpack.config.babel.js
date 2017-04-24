@@ -35,7 +35,11 @@ export default (env = {dev: true}) => {
           ]
         },
         env.dev ? {
-          test: /\.scss$/,
+          test: /\.s?css$/,
+          include: [
+            path.resolve(__dirname, 'app/styles'),
+            path.resolve(__dirname, 'node_modules/prismjs/themes')
+          ],
           use: [
             {
               loader: 'style-loader',
@@ -65,8 +69,11 @@ export default (env = {dev: true}) => {
             }
           ]
         } : {
-          test: /\.scss$/,
-          exclude: /node_modules/,
+          test: /\.s?css$/,
+          include: [
+            path.resolve(__dirname, 'app/styles'),
+            path.resolve(__dirname, 'node_modules/prismjs/themes')
+          ],
           loader: ExtractTextPlugin.extract([
             {
               loader: 'css-loader',
@@ -113,6 +120,11 @@ export default (env = {dev: true}) => {
         disable: false,
         allChunks: true
       }) : undefined,
+      // Commons Chunks to combine with the explicit vendor strategy
+      //new webpack.optimize.CommonsChunkPlugin({
+      //  name: 'commons',
+      //  chunks: ['app', 'app2'] // name of the entries which you want to extract the commons chunks of
+      //}),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
       }),
