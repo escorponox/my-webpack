@@ -9,4 +9,5 @@ html {
 
 body {
   @include flex-container(column);
+  min-height: 100vh;
 }

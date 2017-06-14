@@ -38,7 +38,6 @@ export default (env = {dev: true}) => {
           test: /\.s?css$/,
           include: [
             path.resolve(__dirname, 'app/styles'),
-            path.resolve(__dirname, 'node_modules/prismjs/themes')
           ],
           use: [
             {
@@ -86,7 +85,7 @@ export default (env = {dev: true}) => {
               options: {
                 plugins: () => [
                   autoprefixer({
-                    browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9']
+                    browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 11']
                   }),
                   cssnano
                 ]
@@ -96,6 +95,23 @@ export default (env = {dev: true}) => {
               loader: 'sass-loader',
             }
           ])
+        },
+        {
+          test: /\.hbs$/,
+          include: [
+            path.resolve(__dirname, 'app/templates'),
+          ],
+          use: {
+            loader: 'handlebars-loader',
+            options: {
+              helperDirs: [
+                path.resolve(__dirname, 'app/templates/helpers'),
+              ],
+              partialDirs: [
+                path.resolve(__dirname, 'app/templates/'),
+              ]
+            }
+          }
         }
       ]
     },
